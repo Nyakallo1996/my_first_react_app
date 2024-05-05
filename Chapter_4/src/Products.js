@@ -15,7 +15,7 @@ class Products extends Component {
     getProducts() {
         return [
             {
-                ImageUrl: "http://loremflickr.com/150/150?random=1",
+                imageUrl: "http://loremflickr.com/150/150?random=1",
                 productName: "Product 1",
                 releasedDate: "May 31, 2016",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porttitor, tellus laoreet venenatis facilisis, enim ex faucibus nulla, id rutrum ligula purus sit amet mauris. ",         

@@ -4,6 +4,7 @@ import UserForm from "./UserForm";
 import GitHub from "./GitHub";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
+import GitHubUser from "./GitHubUser";
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class Header extends Component {
             </Navbar.Collapse>
           </Navbar>
           <Switch>
+            <Route path="/github/user/:login/:id" component={GitHubUser} />  
             <Route path="/GitHub" component={GitHub} />
             <Route exact path="/" component={Home} />
             <Route path="/*" component={NotFound} />

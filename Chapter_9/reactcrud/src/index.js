@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import "firebase/compat/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArATWTN6H662aQb9R2WkikjAlv932Rlwo",

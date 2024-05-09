@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/database";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Modal } from "react-bootstrap";
+import { Link } from 'react-router-dom'; 
 
 class User extends Component {
   constructor(props) {
@@ -11,14 +12,23 @@ class User extends Component {
     this.state = {
       users: [],
       showDeleteDialog: false,
-      selectedUser: {}
+      selectedUser: {},
     };
     this.add = this.add.bind(this);
+    this.closeDeleteDialog = this.closeDeleteDialog.bind(this);                                       
+    this.delete = this.delete.bind(this); 
   }
 
-  add(e) { 
-    this.props.history.push("/add");   
-    } 
+  add(e) {
+    this.props.history.push("/add");
+  }
+
+  openDeleteDialog(user){     
+    this.setState({         
+    showDeleteDialog: true, 
+    selectedUser: user 
+    });    
+    }
 
   componentDidMount() {
     firebase
@@ -42,14 +52,26 @@ class User extends Component {
       <tr key={user.key}>
         <td>{user.username}</td>
         <td>{user.email}</td>
-        <td>Edit</td>
-        <td>Remove</td>
+        <td> 
+<Link to={`/edit/${user.key}`}>             
+Edit 
+</Link>         
+</td> 
+        <td>
+          <Button onClick={this.openDeleteDialog.bind(this, user)}>
+            Remove
+          </Button>
+        </td>
       </tr>
     ));
 
+    
+
     return (
       <div>
-        <Button variant="primary" onClick={this.add}>Add</Button>
+        <Button variant="primary" onClick={this.add}>
+          Add
+        </Button>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -61,6 +83,20 @@ class User extends Component {
           </thead>
           <tbody>{listUsers}</tbody>
         </Table>
+        <Modal show={this.state.showDeleteDialog} onHide={this.closeDeleteDialog}> 
+<Modal.Header closeButton> 
+<Modal.Title>Delete User</Modal.Title> 
+</Modal.Header> 
+<Modal.Body>             
+<p>Are you sure you want to delete  
+{this.state.selectedUser.username}?</p> 
+<hr /> 
+</Modal.Body> 
+<Modal.Footer> 
+<Button onClick={this.delete}>Delete</Button> 
+<Button onClick={this.closeDeleteDialog}>Close</Button> 
+</Modal.Footer> 
+</Modal> 
       </div>
     );
   }

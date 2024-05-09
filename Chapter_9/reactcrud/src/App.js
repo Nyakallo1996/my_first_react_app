@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import User from "./User";
 
 class App extends Component {
   constructor() {
@@ -13,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Check Console</h1>
+        <User />
       </div>
     );
   }

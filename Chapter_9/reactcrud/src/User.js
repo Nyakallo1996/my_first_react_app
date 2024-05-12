@@ -4,7 +4,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/database";
 import { Table, Button, Modal } from "react-bootstrap";
-import { Link } from 'react-router-dom'; 
+import { Link } from "react-router-dom";
 
 class User extends Component {
   constructor(props) {
@@ -15,20 +15,13 @@ class User extends Component {
       selectedUser: {},
     };
     this.add = this.add.bind(this);
-    this.closeDeleteDialog = this.closeDeleteDialog.bind(this);                                       
-    this.delete = this.delete.bind(this); 
+    this.closeDeleteDialog = this.closeDeleteDialog.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
-  add(e) {
-    this.props.history.push("/add");
-  }
+  
 
-  openDeleteDialog(user){     
-    this.setState({         
-    showDeleteDialog: true, 
-    selectedUser: user 
-    });    
-    }
+  
 
   componentDidMount() {
     firebase
@@ -47,16 +40,46 @@ class User extends Component {
         console.log(snapshot.val());
       });
   }
+
+  add(e) {
+    this.props.history.push("/add");
+  }
+
+  openDeleteDialog(user) {
+    this.setState({
+      showDeleteDialog: true,
+      selectedUser: user,
+    });
+  }
+
+  delete(e) {    
+    firebase.database().ref('/'+this.state.selectedUser.key).remove()
+    .then( x=> {
+        console.log("SUCCESS");
+        this.closeDeleteDialog();
+    })
+    .catch( error => {
+        alert("Could not delete the user.");
+        console.log("ERROR", error)
+    });
+  }
+
+  closeDeleteDialog() {
+    this.setState({ 
+        showDeleteDialog: false,
+        selectedUser: {}
+    });
+  }
+
+
   render() {
     const listUsers = this.state.users.map((user) => (
       <tr key={user.key}>
         <td>{user.username}</td>
         <td>{user.email}</td>
-        <td> 
-<Link to={`/edit/${user.key}`}>             
-Edit 
-</Link>         
-</td> 
+        <td>
+          <Link to={`/edit/${user.key}`}>Edit</Link>
+        </td>
         <td>
           <Button onClick={this.openDeleteDialog.bind(this, user)}>
             Remove
@@ -64,8 +87,6 @@ Edit
         </td>
       </tr>
     ));
-
-    
 
     return (
       <div>
@@ -83,20 +104,25 @@ Edit
           </thead>
           <tbody>{listUsers}</tbody>
         </Table>
-        <Modal show={this.state.showDeleteDialog} onHide={this.closeDeleteDialog}> 
-<Modal.Header closeButton> 
-<Modal.Title>Delete User</Modal.Title> 
-</Modal.Header> 
-<Modal.Body>             
-<p>Are you sure you want to delete  
-{this.state.selectedUser.username}?</p> 
-<hr /> 
-</Modal.Body> 
-<Modal.Footer> 
-<Button onClick={this.delete}>Delete</Button> 
-<Button onClick={this.closeDeleteDialog}>Close</Button> 
-</Modal.Footer> 
-</Modal> 
+        <Modal
+          show={this.state.showDeleteDialog}
+          onHide={this.closeDeleteDialog}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Delete User</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              Are you sure you want to delete
+              {this.state.selectedUser.username}?
+            </p>
+            <hr />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.delete}>Delete</Button>
+            <Button onClick={this.closeDeleteDialog}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

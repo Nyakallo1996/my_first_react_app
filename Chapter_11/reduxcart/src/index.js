@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import {createStore} from "redux";
 import { Provider } from 'react-redux';
 import cartReducer from "./reducer";
@@ -13,7 +13,7 @@ var destination = document.querySelector("#container");
 var store = createStore(cartReducer);
 
 
-ReactDom.render(
+ReactDOM.render(
   <Provider store = {store}>
     <App />
   </Provider>,

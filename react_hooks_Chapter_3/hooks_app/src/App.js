@@ -1,5 +1,7 @@
 import React from "react";
 import Products from "./Products";
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { Button } from 'react-bootstrap'; 
 
 const formatName = (user) => {
   return user.firstName + " " + user.lastName;
@@ -18,6 +20,7 @@ lastName:'Lim',
       Hello, {formatName(user)} 
       </h1>
       <Products />
+      <Button variant="primary" disabled>Default</Button>
     </div>
   );
 }

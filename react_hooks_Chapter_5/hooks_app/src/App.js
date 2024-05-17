@@ -3,6 +3,7 @@ import Products from "./Products";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import Rating from "./Rating";
+import JumbotronComponent from "./JumbotronComponent";
 
 const formatName = (user) => {
   return user.firstName + " " + user.lastName;
@@ -16,11 +17,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Hello, {formatName(user)}</h1>
-      <Products />
-      <Button variant="primary" disabled>
-        Default
-      </Button>
+      <JumbotronComponent>
+        This is a long sentence, and I want to insert content into the jumbotron
+        component from the outside.
+      </JumbotronComponent>
     </div>
   );
 };

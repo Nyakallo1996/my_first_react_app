@@ -12,20 +12,16 @@ function Rating(props) {
             {rating >= 3 ? (<IoIosStar onClick={() => setRating(3)} />) : (<IoIosStarOutline onClick={() => setRating(3)}/>)}
             {rating >= 4 ? (<IoIosStar onClick={() => setRating(4)}/>) : (<IoIosStarOutline onClick={() => setRating(4)}/>)}
             {rating >= 5 ? (<IoIosStar onClick={() => setRating(5)}/>) : (<IoIosStarOutline onClick={() => setRating(5)}/>)}
-            {props.numOfReviews} 
         </div>
     )
-    
-    
+        
         
 }
 
-
-
 export default Rating;
 
-const styles = {
-    starStyle: {
-        color: "orange"
+const styles={ 
+    starStyle:{ 
+    color: 'orange'     
+    } 
     }
-}

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import Rating from "./Rating";
 
+
 const formatName = (user) => {
   return user.firstName + " " + user.lastName;
 };
@@ -26,6 +27,7 @@ const App = () => {
       <Button variant="primary" disabled>
         Default
       </Button>
+      <Products />
     </div>
   );
 };

@@ -18,11 +18,6 @@ const App = () => {
     <div className="App">
       <h1>Hello, {formatName(user)}</h1>
       <Products />
-      <Rating rating="1" />
-      <Rating rating="2" />
-      <Rating rating="3" />
-      <Rating rating="4" />
-      <Rating rating="5" />
       <Button variant="primary" disabled>
         Default
       </Button>

@@ -1,3 +1,3 @@
 export default function Basket() {
-    return <div className="col-1">Basket</div>
+    return <div className="block col-1">Basket</div>
 }

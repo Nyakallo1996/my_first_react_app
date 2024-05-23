@@ -8,6 +8,12 @@ export default function Product(props) {
             <h3>{product.name}</h3>
             <div>${product.price}</div>
             <div>
+                {item ? <div>
+                    <button onClick={() => onRemove(item)} className="remove">
+                        -
+                    </button>
+                    <span className="p-1">{item.qty}</span>
+                </div> }
                 <button onClick={() => onAdd(product)}>Add To Cart</button>
             </div>
         </div>

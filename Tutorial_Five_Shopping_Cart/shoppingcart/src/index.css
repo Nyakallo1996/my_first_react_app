@@ -20,6 +20,14 @@ img.small {
   width: 100%;
 }
 
+button {
+  padding: 0.3rem;
+  border: 0.1rem #404040 solid;
+  background-color: #f0c040;
+  width: 100%;
+  cursor: pointer;
+}
+
 .card {
   background-color: white;
   padding: 1rem;

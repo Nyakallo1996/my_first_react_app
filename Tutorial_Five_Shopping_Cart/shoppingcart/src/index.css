@@ -28,6 +28,27 @@ button {
   cursor: pointer;
 }
 
+button.add {
+  background-color: aqua;
+  width: 1.5rem;
+}
+
+button.remove {
+  background-color: red;
+  width: 1.5rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+button.badge {
+  background-color: red;
+  border: none;
+  color: whitesmoke;
+  width: 1.5rem;
+}
+
 .card {
   background-color: white;
   padding: 1rem;

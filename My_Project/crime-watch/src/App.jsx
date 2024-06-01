@@ -1,11 +1,18 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CrimePostForm from './components/CrimePostForm';
 import CrimePostList from './components/CrimePostList';
 import './index.css';
 
 const App = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(() => {
+    const savedPosts = localStorage.getItem("posts");
+    return savedPosts ? JSON.parse(savedPosts) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("posts", JSON.stringify(posts));
+  }, [posts]);
 
   const handleNewPost = (post) => {
     setPosts([post, ...posts]);

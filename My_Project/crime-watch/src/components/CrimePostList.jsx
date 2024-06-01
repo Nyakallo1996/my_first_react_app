@@ -5,8 +5,8 @@ const CrimePostList = ({ posts }) => {
   return (
     <div>
       {posts.map((post, index) => (
-        <div key={index} className="blog-post">
-          <img src={post.image} alt="Blog Post" style={{ width: '100%' }} />
+        <div key={index} className="crime-post">
+          <img src={post.image} alt="Crime Post" style={{ width: '100%' }} />
           <p>{post.description}</p>
         </div>
       ))}

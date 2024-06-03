@@ -1,28 +1,52 @@
-
 import React, { useEffect, useState } from 'react';
-import CrimePostForm from './components/CrimePostForm';
-import CrimePostList from './components/CrimePostList';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import CreatePost from "./pages/CreatePost";
+import { signOut } from 'firebase/auth';
 import './index.css';
+import { auth } from './firebase-config';
+
 
 const App = () => {
-  const [posts, setPosts] = useState(() => {
-    const savedPosts = localStorage.getItem("posts");
-    return savedPosts ? JSON.parse(savedPosts) : [];
-  });
+  
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
-  useEffect(() => {
-    localStorage.setItem("posts", JSON.stringify(posts));
-  }, [posts]);
-
-  const handleNewPost = (post) => {
-    setPosts([post, ...posts]);
-  };
+ 
+//Creating my logout function
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear()
+      setIsAuth(false)
+      window.location.pathname = "/Login";
+    })
+  }
 
   return (
     <div className="App">
-      <h1>Crime Watch</h1>
-      <CrimePostForm onSubmit={handleNewPost} />
-      <CrimePostList posts={posts} />
+      <div>
+        <Router>
+          <nav>
+            <h1>Crime Watch</h1>
+            <Link to="/"> Home </Link>
+            
+            {!isAuth ? (
+            <Link to="/Login"> Login </Link>
+            ) : (
+              <>
+            <Link to="/CreatePost"> Create Post </Link>
+            <button onClick={signUserOut}> LogOut </button>
+             </>
+            )}
+          </nav>
+          <Routes>
+            <Route path='/' element={<Home isAuth={isAuth}/>} />
+            <Route path='/CreatePost' element={<CreatePost/>} isAuth={isAuth}/>
+            <Route path="/Login" element={<Login setIsAuth={setIsAuth}/>} />
+          </Routes>
+        </Router>
+      </div>
+     
     </div>
   );
 };

@@ -7,7 +7,7 @@ import {getAuth, GoogleAuthProvider} from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCF1D0UJL-CdKt5unY-OfmW2qtwYMPJ-sY",
+  apiKey: "",
   authDomain: "crime-watch-1ee7d.firebaseapp.com",
   projectId: "crime-watch-1ee7d",
   storageBucket: "crime-watch-1ee7d.appspot.com",

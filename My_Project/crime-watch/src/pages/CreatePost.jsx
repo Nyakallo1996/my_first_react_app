@@ -22,6 +22,7 @@ function CreatePost({ isAuth }) {
     const postsCollectionRef = collection(db,   "posts");
     let navigate = useNavigate();
 
+    //my image upload function
     const uploadImage = async () => {
         if (imageUpload == null) return;
         const imageRef = ref(storage, `images/${imageUpload.name}`);
@@ -31,6 +32,7 @@ function CreatePost({ isAuth }) {
         return url;
     } 
 
+    //my string upload function 
     const createPost = async () => {
         await uploadImage();
         await addDoc(postsCollectionRef, {

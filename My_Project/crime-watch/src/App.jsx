@@ -8,6 +8,7 @@ import './index.css';
 import { auth } from './firebase-config';
 
 
+
 const App = () => {
   
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));

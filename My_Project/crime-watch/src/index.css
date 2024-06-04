@@ -190,3 +190,6 @@ textarea {
   overflow-y: auto;
 }
 
+.inputGp.img {
+  width: 20px;
+}

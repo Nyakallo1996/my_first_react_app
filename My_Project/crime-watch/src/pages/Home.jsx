@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { auth, provider } from "../firebase-config";
-import { db } from "../firebase-config";
+import {db, auth, provider} from "../firebase-config";
+
 
 function Home({isAuth}) {
 
     const [postLists, setPostList] = useState([]);
-    const postsCollectionRef = collection(db, "posts");
+    const postsCollectionRef = collection(db,  "posts");
 
     useEffect(() => {
         const getPosts = async () => {
@@ -50,7 +50,12 @@ function Home({isAuth}) {
                         <div className="postTextContainer">
                             <strong><p>Location:</p></strong> {post.location}
                         </div>
-                        <div className="postImage">{post.image}</div>
+                        <div className="postImage">{post.imageUrl && <img src={post.imageUrl} alt="Post Image" style={{ 
+                                width: '100%', 
+                                height: 'auto', 
+                                borderRadius: '10px', 
+                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' 
+                            }}/>}</div>
                         <h2>@{post.author.name}</h2>
                     </div>
                 )

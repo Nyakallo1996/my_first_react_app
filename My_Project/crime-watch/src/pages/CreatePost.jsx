@@ -1,36 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { db, auth } from "../firebase-config";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, auth, storage} from "../firebase-config";
 import { useNavigate } from "react-router-dom";
+
+
+
 
 function CreatePost({ isAuth }) {
 
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [postText, setPostText] = useState("");
-    const [image, setImage] = useState("");
+    const [imageUpload, setImageUpload] = useState(null);
+    const [imageUrl, setImageUrl] = useState("");
+
+   
+    
     
     //Storing data to my firebase
-    const postsCollectionRef = collection(db, "posts");
+    const postsCollectionRef = collection(db,   "posts");
     let navigate = useNavigate();
 
+    const uploadImage = async () => {
+        if (imageUpload == null) return;
+        const imageRef = ref(storage, `images/${imageUpload.name}`);
+        await uploadBytes(imageRef, imageUpload);
+        const url = await getDownloadURL(imageRef);
+        setImageUrl(url);
+        return url;
+    } 
+
     const createPost = async () => {
+        await uploadImage();
         await addDoc(postsCollectionRef, {
              title,
              location, 
              postText, 
-             image, 
              author: {name: auth.currentUser.displayName, id: auth.currentUser.uid },
+             imageUrl
 
             });
             navigate("/");
     };
 
-    /*useEffect(() => {
-      if (!isAuth) {
-        navigate("/Login");
-      }
-    }, [isAuth])*/
+ 
+    
 
     return (
         <div className="createPostPage">
@@ -56,11 +71,9 @@ function CreatePost({ isAuth }) {
                 </div>
                 <div className="inputGp">
                    <label htmlFor="image">Image:</label>
-                   <input type="file" id="image" onChange={(event) => {
-                    setImage(event.target.value);
-                   }} />
+                   <input className="img" type="file" id="image" onChange={(event) => setImageUpload(event.target.files[0])}/>
                 </div>
-                <button onClick={createPost}>Submit Post</button>
+                <button type="Submit" onClick={createPost}>Submit</button>
             </div>
         </div>
     )

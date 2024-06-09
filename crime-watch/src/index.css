@@ -11,7 +11,7 @@ nav {
   margin: 0;
   width: 100%;
   height: 80px;
-  background-color: black;
+  background-color: rgb(238, 99, 99);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,9 +37,9 @@ a {
   width: 500px;
   height: auto;
   padding: 20px;
-  background-color: black;
+  background-color: rgb(56, 175, 70);
   border-radius: 12px;
-  color: white;
+  color: rgb(55, 52, 52);
   display: flex;
   flex-direction: column;
 }
@@ -148,8 +148,8 @@ textarea {
   width: 600px;
   height: auto;
   max-height: 600px;
-  background-color: rgb(250, 250, 250);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: rgb(133, 118, 118);
+  box-shadow: rgba(227, 214, 214, 0.24) 0px 3px 8px;
   margin: 20px;
   padding: 20px;
   border-radius: 15px;
@@ -186,4 +186,17 @@ textarea {
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
+}
+
+.imageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+}
+
+.postImage {
+  max-width: 100%;
+  height: auto; /* Maintain the aspect ratio */
+  border-radius: 8px; /* Optional: add some border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add some shadow */
 }

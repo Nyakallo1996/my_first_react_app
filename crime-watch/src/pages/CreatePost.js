@@ -35,16 +35,16 @@ function CreatePost() {
 
     return(<div className="createPostPage">
         <div className="cpContainer">
-            <h1>Create A Post</h1>
+            <h1>Report Crime:</h1>
             <div className="inputGp">
                 <label>Title:</label>
-                <input placeholder="Title.. " onChange={(event) => {
+                <input placeholder="e.g HighJacking..." onChange={(event) => {
                     setTitle(event.target.value);
                 }}/>
             </div>
             <div className="inputGp">
-                <label>Post:</label>
-                <textarea placeholder="Post.." onChange={(event) => {
+                <label>Description Of Crime:</label>
+                <textarea placeholder="e.g elderly women just got robbed on 5000 Halfway House" onChange={(event) => {
                     setPostText(event.target.value);
                 }}/>
             </div>

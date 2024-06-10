@@ -13,6 +13,7 @@ function CreatePost() {
     const postsCollectionRef = collection(db, "posts");
     let navigate = useNavigate();
 
+    //upload image function
     const uploadImage = async (imageFile) => {
         if (!imageFile) return null;
 

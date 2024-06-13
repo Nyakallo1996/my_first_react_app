@@ -21,6 +21,7 @@ function Home() {
 
   return (
     <div className="homePage">
+      <p>Crime watch is a website thats allows community users to post about crime thats happening in their community in real time.</p>
       {postLists.map((post) => {
         return (
           <div className="post">

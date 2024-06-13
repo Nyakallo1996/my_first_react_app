@@ -35,6 +35,7 @@ function CreatePost() {
     };
 
     return(<div className="createPostPage">
+        <p>Fill in the form below to report a crime.</p>
         <div className="cpContainer">
             <h1>Report Crime:</h1>
             <div className="inputGp">

@@ -28,6 +28,7 @@ function App() {
     <div className="App">
       <Router>
         <nav>
+          <h1>CRIME WATCH</h1>
           <Link to="/">Home</Link>
           
           {!isAuth ? (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/Login" element={<Login setIsAuth={setIsAuth}/>}/>
         </Routes>
       </Router>
+      
     </div>
   );
 }
